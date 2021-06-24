@@ -1,0 +1,17 @@
+.navbar {
+  position: relative;
+  display: flex;
+
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: black;
+  color: #fff;
+  font-size: 22px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}

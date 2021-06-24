@@ -1,0 +1,109 @@
+<nav class="navbar nacbar-dark">CRUD App</nav>
+
+<div class="container">
+  <div class="row justify-content-center p-2">
+    <h1>Angular 11 with Firebase Crud app</h1>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="employename"
+      placeholder="Enter Employee Name"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      type="number"
+      [(ngModel)]="employeeAge"
+      class="form-control"
+      placeholder="Enter Employee Age"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      [(ngModel)]="employeeAddress"
+      class="form-control"
+      placeholder="Enter Employee Address"
+    />
+  </div>
+  <div class="form-group text-center">
+    <button
+      class="btn btn-primary"
+      (click)="createRecord()"
+      [disabled]="!employename || !employeeAge || !employeeAddress"
+    >
+      Create Employee
+    </button>
+  </div>
+  <div class="alert alert-primary p-4 m-3" role="alert" *ngIf="message">
+    {{ message }}
+  </div>
+
+  <div class="row p-2">
+    <h4>All Employee Data</h4>
+    <div class="col-md-3" *ngFor="let item of employee">
+      <div class="card" *ngIf="!item.isEdit; else elseBlock">
+        <div class="card-body">
+          <div class="card-title">Name: {{ item.name }}</div>
+          <div class="card-subtitle">Age: {{ item.age }}</div>
+          <div class="card-text">Address: {{ item.address }}</div>
+
+          <a href="#" (click)="editRecord(item)" class="btn btn-primary"
+            >Edit</a
+          >
+          <a href="#" (click)="deleteEmployee(item.id)" class="btn btn-danger"
+            >Delete</a
+          >
+        </div>
+      </div>
+
+      <ng-template #elseBlock>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Edit Employee</div>
+
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="item.editname"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="item.editage"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="item.editaddress"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <a
+                href="#"
+                class="btn btn-secondary"
+                (click)="item.isedit = false"
+                >cancel</a
+              >
+              <a href="#" class="btn btn-success" (click)="UpdateRecord(item)"
+                >Update Employee</a
+              >
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
